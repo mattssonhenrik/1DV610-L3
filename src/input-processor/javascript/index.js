@@ -9,6 +9,7 @@ export function exportingInputFilter () {
     const browserText = new OutputTextToBrowser()
     browserText.checkRules()
 }
+
 document.addEventListener('DOMContentLoaded', () => {
     exportingInputFilter()
 })
