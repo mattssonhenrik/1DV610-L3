@@ -18,6 +18,7 @@ describe('quizOrganizerStartButtons', () => {
 
     beforeEach(() => {
         document.body.innerHTML = `
+        <div id="quiz-screen"></div>
         <div id="starting-screen"></div>
         <div id="input-container"></div>
         <button id="math-button">Math</button>

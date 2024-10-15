@@ -20,7 +20,7 @@ export class QuizOrganizer {
     handleStartButtonClick(type) {
         this.removeStartScreen()
         this.addQuestionScreen()
-        this.sendUserDecision(type)
+        this.getQuizQuestions(type)
 
     }
 
@@ -32,13 +32,10 @@ export class QuizOrganizer {
     addQuestionScreen() {
         let quizElement = document.querySelector("#quiz-screen")
         quizElement.classList.toggle("hidden")
-
-        // let inputElement = document.querySelector("#input-container")
-        // inputElement.classList.toggle("hidden")
     }
 
-    sendUserDecision(type) {
-        this.quizQuestionFetcher.setQuestionType(type)
+    getQuizQuestions(type) {
+        this.quizQuestionFetcher.setQuestionType(type) // Doubt that this is needed
         this.quizQuestionFetcher.fetchQuestions(type)
     }
 }
