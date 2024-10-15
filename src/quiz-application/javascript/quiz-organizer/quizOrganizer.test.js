@@ -34,11 +34,31 @@ describe('quizOrganizerStartButtons', () => {
     })
 
 
-    test('Testing if clicks on the math button triggers setting the question type to Math and calling the fetch answers functions', () => {
+    test('Testing if clicks on the math button triggers setting the question type to math and calling the fetch answers functions', () => {
         const mathButton = document.querySelector("#math-button")
-
         mathButton.click()
         expect(quizOrganizer.quizQuestionFetcher.setQuestionType).toHaveBeenCalledWith('math')
+        expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalled()
+    })
+
+    test('Testing if clicks on the geography button triggers setting the question type to geography and calling the fetch answers functions', () => {
+        const geographyButton = document.querySelector("#geography-button")
+        geographyButton.click()
+        expect(quizOrganizer.quizQuestionFetcher.setQuestionType).toHaveBeenCalledWith('geography')
+        expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalled()
+    })
+
+    test('Testing if clicks on the trick-questions button triggers setting the question type to trickQuetions and calling the fetch answers functions', () => {
+        const trickQuestionButton = document.querySelector("#trick-questions-button")
+        trickQuestionButton.click()
+        expect(quizOrganizer.quizQuestionFetcher.setQuestionType).toHaveBeenCalledWith('trickQuestions')
+        expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalled()
+    })
+
+    test('Testing if clicks on the mix button triggers setting the question type to mix and calling the fetch answers functions', () => {
+        const mixButton = document.querySelector("#mix-button")
+        mixButton.click()
+        expect(quizOrganizer.quizQuestionFetcher.setQuestionType).toHaveBeenCalledWith('mix')
         expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalled()
     })
 })
