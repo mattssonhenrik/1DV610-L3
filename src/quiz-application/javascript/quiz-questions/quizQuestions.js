@@ -47,8 +47,8 @@ export class QuizQuestions {
     }
 
     getQuestions (type) {
-        const category = this.#questions[type]
-        return category
+        const questionsList = this.#questions[type]
+        return questionsList
     }
 
     randomizeQuestions (questionsList) {

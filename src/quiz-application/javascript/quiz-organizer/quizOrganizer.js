@@ -1,32 +1,44 @@
-import { quizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher.js"
+import { QuizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher.js"
 
 export class QuizOrganizer {
-    constructor () {
-        this.quizQuestionFetcher = new quizQuestionFetcher
+    constructor() {
+        this.quizQuestionFetcher = new QuizQuestionFetcher
 
         document.querySelector("#math-button").addEventListener("click", () => {
             this.handleStartButtonClick("math")
-            console.log('math')
         })
-    
+
         document.querySelector("#geography-button").addEventListener("click", () => {
             this.handleStartButtonClick("geography")
-            console.log('geo')
         })
-    
+
         document.querySelector("#trick-questions-button").addEventListener("click", () => {
             this.handleStartButtonClick("trickQuestions")
-            console.log('trick')
-        })
-    
-        document.querySelector("#mix-button").addEventListener("click", () => {
-            this.handleStartButtonClick("mix")
-            console.log('mix')
         })
     }
 
-    handleStartButtonClick (type) {
+    handleStartButtonClick(type) {
+        this.removeStartScreen()
+        this.addQuestionScreen()
+        this.sendUserDecision(type)
+
+    }
+
+    removeStartScreen() {
+        let startScreen = document.querySelector("#starting-screen")
+        startScreen.classList.toggle("hidden")
+    }
+
+    addQuestionScreen() {
+        let quizElement = document.querySelector("#quiz-screen")
+        quizElement.classList.toggle("hidden")
+
+        // let inputElement = document.querySelector("#input-container")
+        // inputElement.classList.toggle("hidden")
+    }
+
+    sendUserDecision(type) {
         this.quizQuestionFetcher.setQuestionType(type)
-        this.quizQuestionFetcher.fetchQuestions() // Really gotta start making some questions so we can start testing
+        this.quizQuestionFetcher.fetchQuestions(type)
     }
 }

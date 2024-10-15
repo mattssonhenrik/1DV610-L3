@@ -2,17 +2,15 @@ import { jest } from '@jest/globals'
 
 
 jest.mock("../quiz-question-fetcher/quizQuestionFetcher.js", () => ({
-    quizQuestionFetcher: jest.fn(() => ({
+    QuizQuestionFetcher: jest.fn().mockImplementation(() => ({
         setQuestionType: jest.fn(),
         fetchQuestions: jest.fn()
     }))
 }))
 
 
-
-
 import { QuizOrganizer } from "./quizOrganizer.js"
-import { quizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher.js"
+import { QuizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher.js"
 
 
 describe('quizOrganizerStartButtons', () => {
@@ -20,6 +18,8 @@ describe('quizOrganizerStartButtons', () => {
 
     beforeEach(() => {
         document.body.innerHTML = `
+        <div id="starting-screen"></div>
+        <div id="input-container"></div>
         <button id="math-button">Math</button>
         <button id="geography-button">Geography</button>
         <button id="trick-questions-button">Trick Questions</button>
@@ -38,7 +38,7 @@ describe('quizOrganizerStartButtons', () => {
         const mathButton = document.querySelector("#math-button")
         mathButton.click()
         expect(quizOrganizer.quizQuestionFetcher.setQuestionType).toHaveBeenCalledWith('math')
-        expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalled()
+        expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalledWith('math')
     })
 
     test('Testing if clicks on the geography button triggers setting the question type to geography and calling the fetch answers functions', () => {
@@ -52,13 +52,6 @@ describe('quizOrganizerStartButtons', () => {
         const trickQuestionButton = document.querySelector("#trick-questions-button")
         trickQuestionButton.click()
         expect(quizOrganizer.quizQuestionFetcher.setQuestionType).toHaveBeenCalledWith('trickQuestions')
-        expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalled()
-    })
-
-    test('Testing if clicks on the mix button triggers setting the question type to mix and calling the fetch answers functions', () => {
-        const mixButton = document.querySelector("#mix-button")
-        mixButton.click()
-        expect(quizOrganizer.quizQuestionFetcher.setQuestionType).toHaveBeenCalledWith('mix')
         expect(quizOrganizer.quizQuestionFetcher.fetchQuestions).toHaveBeenCalled()
     })
 })

@@ -1,11 +1,15 @@
-export class quizQuestionFetcher {
+import { QuizQuestions } from '../quiz-questions/quizQuestions.js'
+
+export class QuizQuestionFetcher {
     #currentQuestionType
     // #arrayOfQuestions to return or display to quizQuestionDisplayer, another dependancy... 
     
     constructor () {
         this.#currentQuestionType = ''
+        this.quizQuestions = new QuizQuestions()
     }
 
+    // Do I even need this?
     setQuestionType (type) {
         if (type === 'math') {
             this.#currentQuestionType = 'math'
@@ -24,14 +28,19 @@ export class quizQuestionFetcher {
 
     fetchQuestions (type) {
         if (type === 'math') {
-            // Gotta get the questions for math
+            let mathQuestions = this.quizQuestions.returnQuestions(type)
+            console.log(mathQuestions)
+            return mathQuestions
         } else if (type === 'geography') {
-            // Gotta get the questions for geo
+            let geographQuestions = this.quizQuestions.returnQuestions(type)
+            console.log(geographQuestions)
+            return geographQuestions
         } else if (type === 'trickQuestions') {
-            // Gotta get the questions trick questions
-        } else if (type === 'mix') {
-            // Gotta get the questions of all types
+            let trickQuestions = this.quizQuestions.returnQuestions(type)
+            console.log(trickQuestions)
+            return trickQuestions
         } else {
+            console.log('its not a string')
             // Throw some kind of error or should we do that with a try/catch wrapper?
         }
     }
