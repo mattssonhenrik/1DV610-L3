@@ -1,5 +1,6 @@
 export class quizQuestionFetcher {
     #currentQuestionType
+    // #arrayOfQuestions to return or display to quizQuestionDisplayer, another dependancy... 
     
     constructor () {
         this.#currentQuestionType = ''
@@ -21,7 +22,7 @@ export class quizQuestionFetcher {
         }
     }
 
-    fetchQuestions () {
+    fetchQuestions (type) {
         if (type === 'math') {
             // Gotta get the questions for math
         } else if (type === 'geography') {

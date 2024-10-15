@@ -11,9 +11,15 @@ export class InputProcessor {
 
         this.inputElement = document.querySelector(".filter")
 
-        this.inputElement.addEventListener("keyPressed", event => {
-            this.isInputValid(event.detail.keyPressed)
-        })
+        // Aye aye aye, this is bad, need to change this part to add an eventlistener for when an input element gets inserted.
+        if(this.inputElement !== null) {
+            this.inputElement.addEventListener("keyPressed", event => {
+                this.isInputValid(event.detail.keyPressed)
+            })
+        } else {
+            // do nothing for now
+        }
+
     }
 
     isInputValid(keyPressed) {

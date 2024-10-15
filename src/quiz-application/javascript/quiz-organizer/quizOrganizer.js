@@ -1,4 +1,4 @@
-import { quizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher"
+import { quizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher.js"
 
 export class QuizOrganizer {
     constructor () {
@@ -6,18 +6,22 @@ export class QuizOrganizer {
 
         document.querySelector("#math-button").addEventListener("click", () => {
             this.handleStartButtonClick("math")
+            console.log('math')
         })
     
         document.querySelector("#geography-button").addEventListener("click", () => {
             this.handleStartButtonClick("geography")
+            console.log('geo')
         })
     
         document.querySelector("#trick-questions-button").addEventListener("click", () => {
             this.handleStartButtonClick("trickQuestions")
+            console.log('trick')
         })
     
         document.querySelector("#mix-button").addEventListener("click", () => {
             this.handleStartButtonClick("mix")
+            console.log('mix')
         })
     }
 
