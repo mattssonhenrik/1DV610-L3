@@ -1,6 +1,8 @@
 export class QuizQuestions {
+    #questions = {}
+
     constructor () {
-        this.questions = {
+        this.#questions = {
             math: [
                 {question: 'A man has 5 sons, each son has a sister, how many daughters does he have?', answer: '1'},
                 {question: 'A phone and a charger costs 150, the phone costs 100 more than the charger, what does the charger cost?', answer: '25'},
@@ -10,8 +12,6 @@ export class QuizQuestions {
                 {question: 'If 3 cats can catch 3 mice in 3 minutes, how many cats are needed to catch 100 mice in 100 minutes?', answer: '3'},
                 {question: 'How many seconds is it in a day?', answer: '86400'},
                 {question: 'Which number can you multiply with any number and always get the same result?', answer: '0'}
-                // {question: '', answer: ''},
-                // {question: '', answer: ''}
             ],
             geography: [
                 {question: 'Which country has the most Islands?', answer: 'sweden'},
@@ -38,5 +38,36 @@ export class QuizQuestions {
                 {question: 'If you have me, you want to share me. If you share me, you do not have me...What am I?', answer: 'secret'}
             ]
         }
+    }
+
+    returnQuestions(type) {
+        let questionsList = this.getQuestions(type)
+        let questionsToReturn = this.randomizeQuestions(questionsList)
+        return questionsToReturn
+    }
+
+    getQuestions (type) {
+        const category = this.#questions[type]
+        return category
+    }
+
+    randomizeQuestions (questionsList) {
+        let trackedIndexes = []
+        let questionsToReturn = []
+        for (let i = 0; i < 3;) {
+            let randomNumber = this.getRandomNumber(questionsList)
+
+            if (!trackedIndexes.includes(randomNumber)) {
+                questionsToReturn.push(questionsList[randomNumber])
+                trackedIndexes.push(randomNumber)
+                i++
+            }
+        }
+        return questionsToReturn
+    }
+
+    getRandomNumber (questionsList) {
+        const randomNumber = Math.floor(Math.random() * questionsList.length)
+        return randomNumber
     }
 }
