@@ -1,8 +1,11 @@
 import { QuizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher.js"
+import { QuizQuestionDisplayer } from "../quiz-question-displayer/quizQuestionDisplayer.js"
 
 export class QuizOrganizer {
+    #questions
     constructor() {
         this.quizQuestionFetcher = new QuizQuestionFetcher
+        this.quizQuestionDisplayer = new QuizQuestionDisplayer
 
         document.querySelector("#math-button").addEventListener("click", () => {
             this.handleStartButtonClick("math")
@@ -21,7 +24,7 @@ export class QuizOrganizer {
         this.removeStartScreen()
         this.addQuestionScreen()
         this.getQuizQuestions(type)
-
+        this.displayQuizQuestion(this.#questions)
     }
 
     removeStartScreen() {
@@ -35,7 +38,10 @@ export class QuizOrganizer {
     }
 
     getQuizQuestions(type) {
-        this.quizQuestionFetcher.setQuestionType(type) // Doubt that this is needed
-        this.quizQuestionFetcher.fetchQuestions(type)
+        this.#questions = this.quizQuestionFetcher.fetchQuestions(type)
+    }
+
+    displayQuizQuestion(questions) {
+        this.quizQuestionDisplayer.updateQuizQuestion(questions)
     }
 }
