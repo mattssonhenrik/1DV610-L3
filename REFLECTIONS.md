@@ -4,3 +4,5 @@ Longest function ever in quiz-questions, no bueno.
 
 Bugs/fix
 enter/tab/space
+
+InputRule klassens mapp heter InputRules

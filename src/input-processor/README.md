@@ -32,3 +32,6 @@ https://developer.mozilla.org/en-US/docs/Web/Events/Creating_and_triggering_even
 
 rulesForInput.js (REGEX):
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp
+
+Comment importing? dynamic rules changes?
+updateRules() updateTextBasedOnRules()

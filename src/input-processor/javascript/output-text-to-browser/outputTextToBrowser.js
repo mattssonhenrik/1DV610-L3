@@ -1,9 +1,10 @@
 import { InputRule } from '../input-rules/inputRules.js'
 
 export class OutputTextToBrowser {
-    constructor () {
+    constructor (ruleHandler) {
         this.textField = document.querySelector(".text-container")
-        this.ruleHandler = new InputRule()
+        this.ruleHandler = ruleHandler
+        console.log(this.ruleHandler)
 
         document.addEventListener('incorrectInput', (event) => {
             this.textField.style.color = "red"

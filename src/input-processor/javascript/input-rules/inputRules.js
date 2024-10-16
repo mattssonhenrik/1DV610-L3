@@ -7,7 +7,7 @@ export class InputRule {
         this.lowerAndUpperLetters = false
         this.lowerLetterAndNumbers = false
         this.upperLetterAndNumbers = false
-        this.numbers = true
+        this.numbers = false
     }
     
     getChosenRule() {

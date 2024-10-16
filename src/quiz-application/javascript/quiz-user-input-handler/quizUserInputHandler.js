@@ -1,8 +1,6 @@
 export class QuizUserInputHandler {
     constructor(quizOrganizer) {
         this.quizOrganizer = quizOrganizer
-
-        
     }
     
     processAnswer (userAnswer, correctAnswer){

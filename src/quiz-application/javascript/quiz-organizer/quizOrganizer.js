@@ -1,6 +1,9 @@
 import { QuizQuestionFetcher } from "../quiz-question-fetcher/quizQuestionFetcher.js"
 import { QuizQuestionDisplayer } from "../quiz-question-displayer/quizQuestionDisplayer.js"
 import { QuizUserInputHandler } from "../quiz-user-input-handler/quizUserInputHandler.js"
+import { InputRule } from '../../../input-processor/javascript/input-rules/inputRules.js'
+import { InputProcessor } from '../../../input-processor/javascript/input-processor/inputProcessor.js'
+import { OutputTextToBrowser } from '../../../input-processor/javascript/output-text-to-browser/outputTextToBrowser.js'
 
 export class QuizOrganizer {
     #questions
@@ -11,16 +14,23 @@ export class QuizOrganizer {
         this.quizQuestionFetcher = new QuizQuestionFetcher
         this.quizQuestionDisplayer = new QuizQuestionDisplayer
         this.quizUserInputHandler = new QuizUserInputHandler(this) //DI of the quizOrganizer instant
+        this.ruleHandler = new InputRule
+        this.inputProcessor = new InputProcessor(this.ruleHandler)
+        this.outputTextToBrowser = new OutputTextToBrowser(this.ruleHandler)
+        
 
         document.querySelector("#math-button").addEventListener("click", () => {
+            this.setOnlyNumbersForInput()
             this.handleStartButtonClick("math")
         })
 
         document.querySelector("#geography-button").addEventListener("click", () => {
+            this.setOnlyLowerAndUpperCaseForInput()
             this.handleStartButtonClick("geography")
         })
 
         document.querySelector("#trick-questions-button").addEventListener("click", () => {
+            this.setOnlyLowerAndUpperCaseForInput()
             this.handleStartButtonClick("trickQuestions")
         })
 
@@ -29,17 +39,17 @@ export class QuizOrganizer {
             this.sendAnswerForProcess(inputValue, this.#questions)
             setTimeout(() => {
                 this.displayQuizQuestion(this.#questions)
-            },800)
+            },1500)
         })
 
         this.background = document.querySelector("body")
     }
 
     handleStartButtonClick(type) {
-        this.removeStartScreen()
-        this.addQuestionScreen()
-        this.getQuizQuestions(type)
-        this.displayQuizQuestion(this.#questions)
+            this.removeStartScreen()
+            this.addQuestionScreen()
+            this.getQuizQuestions(type)
+            this.displayQuizQuestion(this.#questions)
     }
 
     removeStartScreen() {
@@ -94,5 +104,19 @@ export class QuizOrganizer {
         setTimeout(() => {
             this.background.style.backgroundColor = "white"     
         }, 500)     
+    }
+
+    setOnlyNumbersForInput(){
+        this.ruleHandler.lowerAndUpperLetters = false
+        this.ruleHandler.numbers = true
+        this.inputProcessor.updateRules(this.ruleHandler)
+        this.outputTextToBrowser.checkRules()
+    }
+
+    setOnlyLowerAndUpperCaseForInput() {
+        this.ruleHandler.lowerAndUpperLetters = true
+        this.ruleHandler.numbers = false
+        this.inputProcessor.updateRules(this.ruleHandler)
+        this.outputTextToBrowser.checkRules()
     }
 }

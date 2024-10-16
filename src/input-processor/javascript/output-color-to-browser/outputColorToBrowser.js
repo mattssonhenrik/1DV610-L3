@@ -3,10 +3,6 @@ export class OutputColorToBrowser {
         this.correctInput = true
 
         this.inputElement = document.querySelector(".filter")
-        // this.inputElement.style.backgroundColor = "White"
-        // this.inputElement.addEventListener("keyPressed", (event) => {
-        //     this.setColor()
-        // })
 
         document.addEventListener("correctInput", (event) => {
             this.setCorrectInput()
