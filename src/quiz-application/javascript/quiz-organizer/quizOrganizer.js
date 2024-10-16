@@ -3,6 +3,7 @@ import { QuizQuestionDisplayer } from "../quiz-question-displayer/quizQuestionDi
 
 export class QuizOrganizer {
     #questions
+    #currentQuestion = 0
     constructor() {
         this.quizQuestionFetcher = new QuizQuestionFetcher
         this.quizQuestionDisplayer = new QuizQuestionDisplayer
@@ -17,6 +18,13 @@ export class QuizOrganizer {
 
         document.querySelector("#trick-questions-button").addEventListener("click", () => {
             this.handleStartButtonClick("trickQuestions")
+        })
+
+        document.querySelector(".submit-button").addEventListener("click", () => {
+            const inputValue = document.querySelector(".filter").value
+            this.sendAnswerForProcess(inputValue)
+            this.displayQuizQuestion(this.#questions)
+            // this.updateNextQuestion(this.#questions)
         })
     }
 
@@ -41,7 +49,32 @@ export class QuizOrganizer {
         this.#questions = this.quizQuestionFetcher.fetchQuestions(type)
     }
 
+    getCurrentQuestion(questions) {
+        if (this.#currentQuestion < 3) {
+            let currentQuestion = questions[this.#currentQuestion].question
+            console.log(this.#currentQuestion)
+            this.#currentQuestion++
+            return currentQuestion
+        } else {
+            console.log('no more questions!?')
+        }
+    }
+
     displayQuizQuestion(questions) {
-        this.quizQuestionDisplayer.updateQuizQuestion(questions)
+        let currentQuestion = this.getCurrentQuestion(questions)
+        this.quizQuestionDisplayer.updateQuizQuestion(currentQuestion)
+
+
+        // this.quizQuestionDisplayer.updateQuizQuestion(questions)
+    }
+
+    // updateNextQuestion(questions) {
+    //     updateQuizQuestion()
+    //     this.#currentQuestion++
+    // }
+
+    sendAnswerForProcess(inputValue) {
+        //implement
+        console.log(inputValue)
     }
 }

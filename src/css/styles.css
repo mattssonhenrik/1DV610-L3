@@ -48,7 +48,7 @@ html, body {
     background-color: hsl(0, 0%, 82%)
 }
 
-#quiz-screen {
+#quiz-screen, #question-wrapper {
     display:flex;
     flex-grow: 1;
     flex-direction: column;
@@ -69,6 +69,17 @@ html, body {
 .text-container {
     font-size: 2.5vh;
     justify-content:center;
+}
+
+.submit-button {
+    padding: 10px;
+    border-radius:5px;
+    background-color:hsl(0, 0%, 98%);
+}
+
+.submit-button:hover {
+    cursor:pointer;
+    background-color: hsl(0, 0%, 82%);
 }
 
 .hidden {
