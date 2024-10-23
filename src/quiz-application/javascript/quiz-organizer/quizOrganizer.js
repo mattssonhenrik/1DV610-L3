@@ -36,10 +36,12 @@ export class QuizOrganizer {
 
         document.querySelector(".submit-button").addEventListener("click", () => {
             const inputValue = document.querySelector(".filter").value
+            const inputElement = document.querySelector(".filter")
             this.sendAnswerForProcess(inputValue, this.#questions)
             setTimeout(() => {
                 this.displayQuizQuestion(this.#questions)
-            },1500)
+                inputElement.value= ''
+            },1300)
         })
 
         this.background = document.querySelector("body")
