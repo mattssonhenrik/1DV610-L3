@@ -1,6 +1,13 @@
+/**
+ * Manages quiz questions for different quiz types (math, geography, trick questions).
+ */
 export class QuizQuestions {
     #questions = {}
 
+    /**
+     * Initializes a new instance of the QuizQuestions class.
+     * Predefines sets of questions for different quiz types.
+     */
     constructor () {
         this.#questions = {
             math: [
@@ -40,17 +47,35 @@ export class QuizQuestions {
         }
     }
 
+    /**
+     * Returns a randomized subset of quiz questions for the specified quiz type.
+     * 
+     * @param {string} type - The type of quiz (e.g., "math", "geography", "trickQuestions").
+     * @returns {Array} - A randomized list of quiz questions.
+     */
     returnQuestions(type) {
         let questionsList = this.getQuestions(type)
         let questionsToReturn = this.randomizeQuestions(questionsList)
         return questionsToReturn
     }
 
+    /**
+     * Retrieves the list of questions for the specified quiz type.
+     * 
+     * @param {string} type - The type of quiz (e.g., "math", "geography", "trickQuestions").
+     * @returns {Array} - An array of questions for the specified quiz type.
+     */
     getQuestions (type) {
         const questionsList = this.#questions[type]
         return questionsList
     }
 
+    /**
+     * Randomizes the order of questions and returns a subset of 3 random questions.
+     * 
+     * @param {Array} questionsList - The array of quiz questions to randomize.
+     * @returns {Array} - An array containing 3 random quiz questions.
+     */
     randomizeQuestions (questionsList) {
         let trackedIndexes = []
         let questionsToReturn = []
@@ -66,6 +91,12 @@ export class QuizQuestions {
         return questionsToReturn
     }
 
+    /**
+     * Generates a random index for selecting a question.
+     * 
+     * @param {Array} questionsList - The array of quiz questions.
+     * @returns {number} - A random index within the range of the questions list.
+     */
     getRandomNumber (questionsList) {
         const randomNumber = Math.floor(Math.random() * questionsList.length)
         return randomNumber
