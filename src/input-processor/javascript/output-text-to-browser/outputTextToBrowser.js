@@ -1,6 +1,15 @@
 import { InputRule } from '../input-rules/inputRules.js'
 
+/**
+ * Handles displaying text in the browser to provide feedback on the input validation rules and results.
+ */
 export class OutputTextToBrowser {
+    /**
+     * Initializes a new instance of the OutputTextToBrowser class.
+     * Sets up event listeners to change text color based on input validation and assigns the rule handler.
+     * 
+     * @param {InputRule} ruleHandler - The rule handler that defines the input validation rules.
+     */
     constructor (ruleHandler) {
         this.textField = document.querySelector(".text-container")
         this.ruleHandler = ruleHandler
@@ -15,6 +24,10 @@ export class OutputTextToBrowser {
         })
     }
 
+    /**
+     * Updates the text in the text field to reflect the current input validation rules.
+     * Displays a message based on which rule is currently active.
+     */
     checkRules() {
         if (this.ruleHandler.lowerAndUpperLettersPlusNumbers) {
             this.textField.textContent = 'Upper- and lowercase letters and numbers are valid'
