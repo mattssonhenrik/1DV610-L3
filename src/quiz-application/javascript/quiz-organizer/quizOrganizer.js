@@ -41,6 +41,9 @@ export class QuizOrganizer {
             setTimeout(() => {
                 this.displayQuizQuestion(this.#questions)
                 inputElement.value= ''
+                inputElement.dispatchEvent(new CustomEvent('keyPressed', {
+                    bubbles:true
+                }))
             },1300)
         })
 

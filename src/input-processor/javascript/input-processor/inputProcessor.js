@@ -11,7 +11,6 @@ export class InputProcessor {
         this.regex = new RegExp(this.ruleHandler.getChosenRule())
         this.inputElement = document.querySelector(".filter")
 
-        // Aye aye aye, this is bad, need to change this part to add an eventlistener for when an input element gets inserted.
         if(this.inputElement !== null) {
             this.inputElement.addEventListener("keyPressed", () => {
                 this.isInputValid()
