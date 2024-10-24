@@ -8,7 +8,6 @@ export class OutputColorToBrowser {
      */
     constructor() {
         this.correctInput = true
-
         this.inputElement = document.querySelector(".filter")
 
         document.addEventListener("correctInput", (event) => {

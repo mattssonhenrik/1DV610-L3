@@ -17,13 +17,13 @@ export class InputProcessor {
         this.ruleHandler = ruleHandler
         this.regex = new RegExp(this.ruleHandler.getChosenRule())
         this.inputElement = document.querySelector(".filter")
+        
 
         if(this.inputElement !== null) {
             this.inputElement.addEventListener("keyPressed", () => {
-                this.isInputValid()
+                let currentInput = this.inputElement.value
+                this.isInputValid(currentInput)
             })
-        } else {
-            // do nothing for now
         }
     }
 
@@ -41,8 +41,7 @@ export class InputProcessor {
      * Validates the current input against the active regular expression rule.
      * Triggers events for valid or invalid input accordingly.
      */
-    isInputValid() {
-        let currentInput = this.inputElement.value
+    isInputValid(currentInput) {
         if (this.regex.test(currentInput)) {
             this.processInvalidInput()
         } else {
@@ -62,12 +61,5 @@ export class InputProcessor {
      */
     processValidInput() {
         document.dispatchEvent(new CustomEvent("correctInput"))
-    }
-
-    /**
-     * Processes any special keys (currently no action defined).
-     */
-    processSpecialKey() {
-        return
     }
 }

@@ -13,8 +13,6 @@ export class InputFromBrowser {
             this.inputElement.addEventListener("input", event => {
                 this.dispatchCustomEvent(event)
             })
-        } else {
-            // do nothing for now
         }
     }
 

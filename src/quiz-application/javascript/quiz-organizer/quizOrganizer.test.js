@@ -24,7 +24,8 @@ describe('quizOrganizerStartButtons', () => {
         <button id="math-button">Math</button>
         <button id="geography-button">Geography</button>
         <button id="trick-questions-button">Trick Questions</button>
-        <button id="mix-button">Mix</button>`
+        <button class="submit-button">Submit</button>
+        <input class="filter" />`
         quizOrganizer = new QuizOrganizer()
     })
 

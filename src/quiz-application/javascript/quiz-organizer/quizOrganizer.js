@@ -21,7 +21,7 @@ export class QuizOrganizer {
     constructor() {
         this.quizQuestionFetcher = new QuizQuestionFetcher
         this.quizQuestionDisplayer = new QuizQuestionDisplayer
-        this.quizUserInputHandler = new QuizUserInputHandler(this) //DI of the quizOrganizer instant
+        this.quizUserInputHandler = new QuizUserInputHandler(this)
         this.ruleHandler = new InputRule
         this.inputProcessor = new InputProcessor(this.ruleHandler)
         this.outputTextToBrowser = new OutputTextToBrowser(this.ruleHandler)
