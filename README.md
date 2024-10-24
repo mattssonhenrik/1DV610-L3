@@ -33,3 +33,11 @@ To run the application locally or explore the code, follow the steps below.
 #### Clone the Repository
 ```bash
 git clone https://github.com/mattssonhenrik/1DV610-L3.git
+```
+
+
+## Contributing
+Contributions are welcome! If you'd like to improve the project, please fork the repository and submit a pull request.
+
+## License
+This project is licensed under the MIT License - see the LICENSE file for details.
